@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Name | Portfolio</title>
+  <meta name="description" content="Personal portfolio website for Your Name" />
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #1f2937;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #0b1120 0%, #111827 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background: rgba(15, 23, 42, 0.88);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 60ch;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-placeholder {
+      width: 100%;
+      min-height: 280px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(56,189,248,0.16), rgba(34,197,94,0.14));
+      color: var(--muted);
+      border: 1px dashed rgba(255,255,255,0.2);
+      padding: 1rem;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.15rem;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      text-decoration: none;
+      opacity: 0.95;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #06131a;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    section {
+      padding: 2rem 0 1.5rem;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 65ch;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.15rem;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 0.25rem 0.35rem 0 0;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.12);
+      color: #c7f0ff;
+      font-size: 0.82rem;
+      border: 1px solid rgba(56,189,248,0.2);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-2);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 0.2rem;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    footer {
+      padding: 2.5rem 0 3rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      margin-top: 1rem;
+      color: var(--muted);
+    }
+
+    .contact-list span {
+      display: inline-block;
+    }
+
+    @media (max-width: 850px) {
+      .hero-grid,
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Your Name</div>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p style="color: var(--accent); font-weight: 700; margin-bottom: 0.5rem;">Welcome to my website</p>
+          <h1>Hi, I'm Your Name.</h1>
+          <p>
+            I’m a [your profession or focus area] with interests in [industry, skills, or mission].
+            This site highlights my background, selected work, education, and professional experience.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#portfolio">View Portfolio</a>
+            <a class="btn btn-secondary" href="#contact">Contact Me</a>
+          </div>
+          <div class="contact-list">
+            <span>Email: yourname@email.com</span>
+            <span>LinkedIn: linkedin.com/in/yourname</span>
+            <span>GitHub: github.com/yourusername</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="profile-placeholder">
+            <div>
+              <strong>Add your photo here</strong><br />
+              Replace this box with an image or short personal statement.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">Personal Bio</h2>
+        <p class="section-subtitle">
+          Write a short introduction here that explains who you are, what you do, what matters to you,
+          and the kind of work or opportunities you are pursuing.
+        </p>
+        <div class="card">
+          <p>
+            I am a dedicated professional with experience in [field or area]. My interests include [topic 1],
+            [topic 2], and [topic 3]. I enjoy building meaningful projects, continuing to learn, and applying
+            my skills to solve practical problems. In both academic and professional settings, I value
+            reliability, clear communication, and steady growth.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <h2 class="section-title">Portfolio</h2>
+        <p class="section-subtitle">
+          Highlight projects, case studies, presentations, reports, websites, or anything else you want visitors to see.
+        </p>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Project One</h3>
+            <p class="meta">Short label | Year</p>
+            <p>
+              Add a brief description of your project here. Explain what it was, what you did,
+              what tools you used, and what outcome you achieved.
+            </p>
+            <div>
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">Project Management</span>
+            </div>
+            <p style="margin-top: 0.9rem;"><a href="#">Project Link</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Project Two</h3>
+            <p class="meta">Short label | Year</p>
+            <p>
+              Add a second featured project here. Keep the description concise but clear so visitors can quickly understand its value.
+            </p>
+            <div>
+              <span class="tag">Research</span>
+              <span class="tag">Analysis</span>
+              <span class="tag">Communication</span>
+            </div>
+            <p style="margin-top: 0.9rem;"><a href="#">Project Link</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Project Three</h3>
+            <p class="meta">Short label | Year</p>
+            <p>
+              Use this area for another portfolio item, certification project, design sample, or technical report.
+            </p>
+            <div>
+              <span class="tag">Design</span>
+              <span class="tag">Documentation</span>
+            </div>
+            <p style="margin-top: 0.9rem;"><a href="#">Project Link</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Project Four</h3>
+            <p class="meta">Short label | Year</p>
+            <p>
+              Add anything here that supports your personal brand and gives a fuller picture of your experience.
+            </p>
+            <div>
+              <span class="tag">Leadership</span>
+              <span class="tag">Strategy</span>
+            </div>
+            <p style="margin-top: 0.9rem;"><a href="#">Project Link</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">
+          List your degrees, certificates, relevant coursework, honors, or professional training.
+        </p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Degree or Program Name</h3>
+            <p class="meta">School Name | Graduation Year</p>
+            <p>
+              Add a short description here, such as your major, concentration, academic achievements,
+              or coursework that relates to your career goals.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <h3>Degree or Certification Name</h3>
+            <p class="meta">Institution Name | Graduation Year</p>
+            <p>
+              Include any additional training, certifications, or technical education you want employers or visitors to see.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Work Experience</h2>
+        <p class="section-subtitle">
+          Summarize your professional background with job titles, employers, dates, and key responsibilities or achievements.
+        </p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Job Title</h3>
+            <p class="meta">Company Name | Month Year - Present</p>
+            <ul>
+              <li>Describe one important responsibility or achievement.</li>
+              <li>Describe another impact you made in this role.</li>
+              <li>Mention tools, systems, or leadership experience if relevant.</li>
+            </ul>
+          </div>
+
+          <div class="timeline-item">
+            <h3>Previous Job Title</h3>
+            <p class="meta">Company Name | Month Year - Month Year</p>
+            <ul>
+              <li>Summarize the main duties of the role.</li>
+              <li>Show a measurable result if possible.</li>
+              <li>Include collaboration, technical skills, or customer-facing work when useful.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">
+          Make it easy for people to reach you.
+        </p>
+        <div class="card">
+          <p><strong>Email:</strong> <a href="mailto:yourname@email.com">yourname@email.com</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourname" target="_blank" rel="noopener noreferrer">linkedin.com/in/yourname</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">github.com/yourusername</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Your Name. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
